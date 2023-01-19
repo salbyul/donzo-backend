@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//matis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.admin.notice.INoticeRepository">
+    <select id="findAll" resultType="com.doneasy.don.domain.admin.notice.Notice">
+        select * from notice
+    </select>
+    <insert id="save" parameterType="com.doneasy.don.domain.admin.notice.Notice">
+        insert into notice values(notice_seq.nextval, #{title}, #{created_date}, #{modified_date})
+    </insert>
+
+    <select id="findRecent" resultType="com.doneasy.don.domain.admin.notice.Notice">
+        select * from Notice order by id desc limit 1
+    </select>
+
+    <select id="findById" resultType="com.doneasy.don.domain.admin.notice.Notice">
+        select * from Notice where id=#{id}
+    </select>
+
+    <delete id="deleteById" parameterType="com.doneasy.don.domain.admin.notice.Notice">
+        delete from notice where id=#{id}
+    </delete>
+
+    <select id="findByTitle" resultType="com.doneasy.don.domain.admin.notice.Notice">
+        select * from notice where title like '%${title}%'
+    </select>
+</mapper>

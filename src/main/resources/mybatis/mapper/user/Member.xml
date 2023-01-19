@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//matis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.user.MemberRepository">
+
+    <select id="findByMemberId" resultType="com.doneasy.don.domain.user.Member" parameterType="string">
+        select *
+        from member
+        where member_id = #{member_id}
+    </select>
+
+    <insert id="saveMember" parameterType="com.doneasy.don.domain.user.Member">
+        insert into Member
+        values (member_seq.nextval, #{member_id}, #{password}, #{email}, #{nickname}, #{phone_number}, 'ACTIVATE',
+                'USER', now(), now())
+    </insert>
+
+    <update id="modifyMember" parameterType="com.doneasy.don.dto.user.member.MemberModifyDto">
+        UPDATE Member
+        SET password      = #{password},
+            email         = #{email},
+            nickname      = #{nickname},
+            phone_number  = #{phoneNumber},
+            modified_date = now()
+        where member_id = #{memberId}
+    </update>
+
+    <select id="findByNickname" resultType="com.doneasy.don.domain.user.Member">
+        select *
+        from Member
+        where nickname = #{nickname}
+    </select>
+</mapper>

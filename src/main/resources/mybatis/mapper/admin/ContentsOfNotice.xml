@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//matis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.admin.notice.IContentOfNoticeRepository">
+    <insert id="save" parameterType="com.doneasy.don.domain.admin.notice.ContentsOfNotice">
+        insert into contentsofnotice values(contentsofnotice_seq.nextval, #{subtitle}, #{content}, #{image_name}, #{order_num}, #{created_date}, #{modified_date}, #{notice_id})
+    </insert>
+
+    <select id="findByNoticeId" resultType="com.doneasy.don.domain.admin.notice.ContentsOfNotice">
+        select * from contentsofnotice where notice_id=#{id}
+    </select>
+</mapper>

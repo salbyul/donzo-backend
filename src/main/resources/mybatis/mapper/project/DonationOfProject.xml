@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//matis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.project.DonationOfProjectRepository">
+    <insert id="save" parameterType="com.doneasy.don.domain.project.DonationOfProject">
+        insert into donationofproject values(donationofproject_seq.nextval, #{price}, now(), #{member_id}, #{project_id})
+    </insert>
+    <select id="findByMemberId" resultType="com.doneasy.don.domain.project.DonationOfProject">
+        select * from donationofproject where member_id=#{member_id}
+    </select>
+
+    <select id="findAll" resultType="com.doneasy.don.dto.project.donationofproject.DonationOfProjectShowDto">
+        select id, price from donationofproject
+    </select>
+
+    <select id="findSumPriceByProjectId" resultType="integer">
+        select sum(price) from DonationOfProject where Project_id = #{id}
+    </select>
+
+    <select id="findAllById" resultType="com.doneasy.don.dto.project.donationofproject.DonationOfProjectShowDto">
+        select d.id, d.price, d.created_date, m.nickname as memberId
+        from   donationofproject d, project p, member m
+        where  d.member_id = m.id
+          and    d.project_id = p.id
+          and    project_id = #{id}
+    </select>
+    <select id="findByProjectId" resultType="com.doneasy.don.domain.project.DonationOfProject">
+        select * from donationofproject where project_id=#{projectId}
+    </select>
+
+    <select id="findByMemberIdAndProjectId" resultType="com.doneasy.don.domain.project.DonationOfProject">
+        select * from donationofproject where member_id=#{memberId} and project_id=#{projectId}
+    </select>
+</mapper>
+

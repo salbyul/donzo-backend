@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doneasy.don.repository.project.ContentOfProjectRepository">
+
+    <insert id="saveContent" parameterType="com.doneasy.don.domain.project.ContentOfProject">
+        insert into contentofproject
+        values (contentofproject_seq.nextval, #{subtitle}, #{content}, #{image_name}, #{order_num}, now(),
+                #{project_id})
+    </insert>
+
+    <select id="findImageNameByProjectProposalId" resultType="String">
+        select image_name
+        from contentOfProject
+        where projectProposal_id = #{id} limit 1
+    </select>
+
+    <select id="findAllByProjectId" resultType="com.doneasy.don.domain.project.ContentOfProject">
+        select *
+        from contentofproject
+        where projectproposal_id = (select projectproposal_id from project where id = #{project_id})
+    </select>
+
+
+    <select id="findByProjectProposalId" resultType="com.doneasy.don.domain.project.ContentOfProject">
+        select * from contentofproject where projectproposal_id=#{id}
+    </select>
+
+</mapper>

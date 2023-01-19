@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.project.ProjectProposalRepository">
+    <insert id="saveProject" parameterType="com.doneasy.don.domain.project.ProjectProposal">
+        insert into projectproposal
+        values (projectproposal_seq.nextval, #{category}, #{deadline}, #{service_start_date}, #{service_end_date},
+                #{title}, #{target_price}, #{status}, now(), #{organization_id});
+    </insert>
+    <select id="findRecentByTitle" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        select *
+        from projectproposal where title = #{title};
+    </select>
+
+    <select id="findByTag" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        <![CDATA[
+        select *
+        from projectproposal
+        where category = #{tag}
+          and status = 'SUCCESS'
+          and deadline > (select now())
+        ]]>
+    </select>
+
+    <select id="findByAllTag" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        <![CDATA[
+        select *
+        from projectproposal
+        where status = 'SUCCESS'
+          and deadline > (select now())
+        ]]>
+    </select>
+
+    <select id="findAll" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        select *
+        from projectproposal
+    </select>
+
+    <!--    TODO 금액 다 찼을 시 조건 추가해야함-->
+    <select id="findByAllTagDonated" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        <![CDATA[
+        select *
+        from ProjectProposal
+        where status = 'SUCCESS'
+        ]]>
+    </select>
+
+    <!--    TODO 금액 다 찼을 시 조건 추가해야함-->
+    <select id="findByTagDonated" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        <![CDATA[
+        select *
+        from projectproposal
+        where category = #{tag}
+          and status = 'SUCCESS'
+        ]]>
+    </select>
+
+    <update id="modifyStatusSuccess" parameterType="com.doneasy.don.domain.project.ProjectProposal">
+        update projectproposal
+        set status = 'SUCCESS'
+        where id = #{id}
+    </update>
+    <update id="modifyStatusFail" parameterType="com.doneasy.don.domain.project.ProjectProposal">
+        update projectproposal
+        set status = 'FAIL'
+        where id = #{id}
+    </update>
+
+    <select id="findById" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        select *
+        from projectproposal
+        where id = #{id}
+    </select>
+
+    <select id="findByTitleOnlySuccess" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        select *
+        from projectproposal
+        where title like '%${title}%'
+          and status = 'SUCCESS'
+    </select>
+
+    <select id="findByTitle" resultType="com.doneasy.don.domain.project.ProjectProposal">
+        select *
+        from projectproposal
+        where title like '%${title}%'
+    </select>
+
+</mapper>

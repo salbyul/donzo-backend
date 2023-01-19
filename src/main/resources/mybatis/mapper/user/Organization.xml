@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//matis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.user.OrganizationRepository">
+
+    <insert id="saveOrganization" parameterType="com.doneasy.don.domain.user.Organization">
+        insert into organization values(organization_seq.nextval, #{organization_id}, #{password}, #{email},
+                                        #{nickname}, #{phone_number}, #{image_name}, #{introduction}, #{zipcode},
+                                        #{address}, #{account}, #{bank}, now(), now())
+    </insert>
+
+<!--    TODO  수정창에 갔을 시 기존 정보가 표시되지 않음-->
+
+    <update id="modifyOrganization" parameterType="com.doneasy.don.domain.user.Organization">
+        UPDATE organization
+        SET organization_id =#{organization_id}, password =#{password}, email=#{email},
+            nickname =#{nickname}, phone_number =#{phone_number}, image_name =#{image_name},
+            introduction =#{introduction}, zipcode =#{zipcode}, address =#{address},
+            account =#{account}, bank =#{bank}, modified_date =now()
+        where organization_id=#{organization_id}
+    </update>
+
+    <select id="findAll" resultType="com.doneasy.don.domain.user.Organization">
+        select * from organization
+    </select>
+
+    <select id="findById" resultType="com.doneasy.don.domain.user.Organization">
+        select * from organization where id=#{id}
+    </select>
+
+    <select id="findByOrganizationId" resultType="com.doneasy.don.domain.user.Organization" parameterType="string">
+        select * from organization where organization_id=#{organization_id}
+    </select>
+
+    <select id="getNicknameById" resultType="String">
+        select nickname from organization where id=#{id}
+    </select>
+
+    <select id="findByNickname" resultType="com.doneasy.don.domain.user.Organization">
+        select *
+        from Organization
+        where nickname = #{nickname}
+    </select>
+</mapper>

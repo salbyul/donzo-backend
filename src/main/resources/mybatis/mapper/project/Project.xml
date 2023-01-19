@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//matis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.project.ProjectRepository">
+
+    <insert id="save" parameterType="com.doneasy.don.domain.project.Project">
+        insert into project
+        values (project_seq.nextval, 'ACTIVE', now(), #{projectProposalId}, #{organizationId})
+    </insert>
+
+    <select id="findById" resultType="com.doneasy.don.domain.project.Project">
+        select *
+        from project
+        where id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.doneasy.don.domain.project.Project">
+        select *
+        from project
+    </select>
+
+    <update id="statusToDone" parameterType="com.doneasy.don.domain.project.Project">
+        update project
+        set status='DONE'
+        where id = #{id}
+    </update>
+
+    <select id="findByProjectProposalId" resultType="com.doneasy.don.domain.project.Project">
+        select *
+        from project
+        where projectproposal_id = #{id}
+    </select>
+
+    <select id="findByOrganizationId" resultType="com.doneasy.don.domain.project.Project">
+        select *
+        from project
+        where organization_id = #{organization_id}
+    </select>
+
+    <select id="findProjectInfoByProjectId" resultType="com.doneasy.don.dto.project.project.ProjectShowDto">
+        select pp.title,
+               p.created_date,
+               pp.deadline,
+               pp.service_start_date,
+               pp.service_end_date,
+               pp.target_price,
+               oz.nickname
+        from project p,
+             projectproposal pp,
+             organization oz
+        where p.id = #{id}
+          and p.projectproposal_id = pp.id
+          and p.organization_id = oz.id
+    </select>
+
+    <select id="findProjectReviewInfoByProjectId" resultType="com.doneasy.don.dto.project.project.ProjectShowDto">
+        select pr.title,
+               p.created_date,
+               pp.deadline,
+               pp.service_start_date,
+               pp.service_end_date,
+               pp.target_price,
+               oz.nickname
+        from project p,
+             projectproposal pp,
+             projectreview pr,
+             organization oz
+        where p.id = #{id}
+          and p.projectproposal_id = pp.id
+          and p.organization_id = oz.id
+          and p.status = 'DONE'
+          and pr.project_id = p.id
+    </select>
+
+</mapper>

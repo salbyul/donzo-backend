@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//matis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.project.SupportOfProjectRepository">
+    <select id="findCountByProjectId" resultType="Integer">
+        select count(id) from SupportOfProject where Project_id = #{id}
+    </select>
+
+    <insert id="saveSupport" parameterType="com.doneasy.don.domain.project.SupportOfProject">
+        insert into supportofproject values (supportofproject_seq.nextval, sysdate, #{member_id}, #{project_id});
+    </insert>
+    <select id="findShowDtoByProjectId" resultType="com.doneasy.don.dto.project.supportofproject.SupportOfProjectShowDto">
+        select id, member_id, project_id from supportofproject where project_id = #{projectId}
+    </select>
+    <select id="findCountByMemberId" resultType="integer">
+        select count(id) from supportofproject where member_id=#{id}
+    </select>
+
+    <select id="findByMemberIdAndProjectId" resultType="com.doneasy.don.domain.project.SupportOfProject">
+        select * from supportofproject where member_id = #{member_id} and project_id = #{project_id}
+    </select>
+    <select id="findByProjectId" resultType="com.doneasy.don.domain.project.SupportOfProject">
+        select * from supportofproject where project_id=#{projectId}
+    </select>
+</mapper>

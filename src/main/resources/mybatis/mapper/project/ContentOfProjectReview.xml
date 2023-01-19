@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mabatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doneasy.don.repository.project.ContentOfProjectReviewRepository">
+
+    <insert id="saveContentOfProjectReview" parameterType="com.doneasy.don.domain.project.ContentOfProjectReview">
+        insert into contentsofprojectreview
+        values (contentsofprojectreview_seq.nextval, #{subtitle}, #{contents}, #{image_name}, #{order_num}, now(),
+                #{projectReview_id})
+    </insert>
+
+    <select id="findImageNameByProjectReviewId" resultType="String">
+        select image_name
+        from contentsOfProjectReview
+        where projectReview_id = #{id} limit 1
+    </select>
+
+    <select id="findContentForProjectReview" resultType="com.doneasy.don.domain.project.ContentOfProjectReview">
+        select *
+        from contentsofprojectReview
+        where projectreview_id = (select id from projectreview where project_id = #{projectId})
+    </select>
+
+
+</mapper>
