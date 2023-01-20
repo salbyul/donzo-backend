@@ -12,8 +12,6 @@
                                         #{address}, #{account}, #{bank}, now(), now())
     </insert>
 
-<!--    TODO  수정창에 갔을 시 기존 정보가 표시되지 않음-->
-
     <update id="modifyOrganization" parameterType="com.doneasy.don.domain.user.Organization">
         UPDATE organization
         SET organization_id =#{organization_id}, password =#{password}, email=#{email},

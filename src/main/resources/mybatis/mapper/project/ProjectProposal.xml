@@ -38,7 +38,6 @@
         from projectproposal
     </select>
 
-    <!--    TODO 금액 다 찼을 시 조건 추가해야함-->
     <select id="findByAllTagDonated" resultType="com.doneasy.don.domain.project.ProjectProposal">
         <![CDATA[
         select *
@@ -47,7 +46,6 @@
         ]]>
     </select>
 
-    <!--    TODO 금액 다 찼을 시 조건 추가해야함-->
     <select id="findByTagDonated" resultType="com.doneasy.don.domain.project.ProjectProposal">
         <![CDATA[
         select *

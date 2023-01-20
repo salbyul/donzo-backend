@@ -11,7 +11,6 @@ public interface CommentOfProjectRepository {
 
     Integer findCountByMemberId(Long member_id);
 
-    // TODO findByProjectId 로 변경 해야 함 메서드 명 겹침
     Integer findByProjectProposalId(Long id);
 
     List<CommentOfProjectShowDto> findAllById(Long id);
