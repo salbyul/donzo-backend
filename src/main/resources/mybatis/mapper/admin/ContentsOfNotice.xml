@@ -6,7 +6,7 @@
 
 <mapper namespace="com.doneasy.don.repository.admin.notice.IContentOfNoticeRepository">
     <insert id="save" parameterType="com.doneasy.don.domain.admin.notice.ContentsOfNotice">
-        insert into contentsofnotice values((select get_seq('contentsofnotice')), #{subtitle}, #{content}, #{image_name}, #{order_num}, #{created_date}, #{modified_date}, #{notice_id})
+        insert into contentsofnotice values(contentsofnotice_seq.nextval, #{subtitle}, #{content}, #{image_name}, #{order_num}, #{created_date}, #{modified_date}, #{notice_id})
     </insert>
 
     <select id="findByNoticeId" resultType="com.doneasy.don.domain.admin.notice.ContentsOfNotice">

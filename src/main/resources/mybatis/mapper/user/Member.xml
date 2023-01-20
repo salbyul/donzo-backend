@@ -14,7 +14,7 @@
 
     <insert id="saveMember" parameterType="com.doneasy.don.domain.user.Member">
         insert into Member
-        values ((select get_seq('member')), #{member_id}, #{password}, #{email}, #{nickname}, #{phone_number}, 'ACTIVATE',
+        values (member_seq.nextval, #{member_id}, #{password}, #{email}, #{nickname}, #{phone_number}, 'ACTIVATE',
                 'USER', now(), now())
     </insert>
 

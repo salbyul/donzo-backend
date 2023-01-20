@@ -8,7 +8,7 @@
 
     <insert id="save" parameterType="com.doneasy.don.domain.project.Project">
         insert into project
-        values ((select get_seq('project')), 'ACTIVE', now(), #{projectProposalId}, #{organizationId})
+        values (project_seq.nextval, 'ACTIVE', now(), #{projectProposalId}, #{organizationId})
     </insert>
 
     <select id="findById" resultType="com.doneasy.don.domain.project.Project">

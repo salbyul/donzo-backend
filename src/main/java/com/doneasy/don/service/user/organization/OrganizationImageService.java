@@ -19,6 +19,7 @@ public class OrganizationImageService {
     // 단체회원 이미지 경로
     @Value("${admin.image.dir}") private String path;
 
+    // TODO organization 검증하고 실패하면 저장 X
     public String save(List<MultipartFile> multipartFiles) throws IOException {
         MultipartFile imageFile = multipartFiles.get(0);
         imageFile.transferTo(new File(path+imageFile.getOriginalFilename()));

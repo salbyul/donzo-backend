@@ -18,7 +18,7 @@ import java.util.List;
 public class ContentOfProjectService {
 
     private final ContentOfProjectRepository contentOfProjectRepository;
-
+    // TODO 본문 이미지 경로
     @Value("${admin.image.dir}") private String path;
 
     public List<byte[]> getByteArray(List<String> imageList) throws IOException {

@@ -7,10 +7,12 @@
 <mapper namespace="com.doneasy.don.repository.user.OrganizationRepository">
 
     <insert id="saveOrganization" parameterType="com.doneasy.don.domain.user.Organization">
-        insert into organization values((select get_seq('organization')), #{organization_id}, #{password}, #{email},
+        insert into organization values(organization_seq.nextval, #{organization_id}, #{password}, #{email},
                                         #{nickname}, #{phone_number}, #{image_name}, #{introduction}, #{zipcode},
                                         #{address}, #{account}, #{bank}, now(), now())
     </insert>
+
+<!--    TODO  수정창에 갔을 시 기존 정보가 표시되지 않음-->
 
     <update id="modifyOrganization" parameterType="com.doneasy.don.domain.user.Organization">
         UPDATE organization

@@ -7,7 +7,7 @@
 
     <insert id="saveContentOfProjectReview" parameterType="com.doneasy.don.domain.project.ContentOfProjectReview">
         insert into contentsofprojectreview
-        values ((select get_seq('contentsofprojectreview')), #{subtitle}, #{contents}, #{image_name}, #{order_num}, now(),
+        values (contentsofprojectreview_seq.nextval, #{subtitle}, #{contents}, #{image_name}, #{order_num}, now(),
                 #{projectReview_id})
     </insert>
 
