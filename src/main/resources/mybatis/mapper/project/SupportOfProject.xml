@@ -10,7 +10,7 @@
     </select>
 
     <insert id="saveSupport" parameterType="com.doneasy.don.domain.project.SupportOfProject">
-        insert into supportofproject values (supportofproject_seq.nextval, sysdate, #{member_id}, #{project_id});
+        insert into supportofproject values ((select get_seq('supportofproject')), sysdate, #{member_id}, #{project_id});
     </insert>
     <select id="findShowDtoByProjectId" resultType="com.doneasy.don.dto.project.supportofproject.SupportOfProjectShowDto">
         select id, member_id, project_id from supportofproject where project_id = #{projectId}

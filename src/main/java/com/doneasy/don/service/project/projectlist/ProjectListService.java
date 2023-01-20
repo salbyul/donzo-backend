@@ -104,8 +104,6 @@ public class ProjectListService {
         return list;
     }
 
-
-    // TODO path 바꿔야 함
     private byte[] getImage(String image_name) throws IOException {
         if (image_name == null) return null;
         File file = new File(path + image_name);

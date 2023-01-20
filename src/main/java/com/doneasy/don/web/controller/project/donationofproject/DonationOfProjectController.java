@@ -46,7 +46,7 @@ public class DonationOfProjectController {
 
         return new ResponseEntity<>(donationOfProjectList, HttpStatus.OK);
     }
-    // TODO 카카오페이 구현 중복 불가 단체 불가
+
     @PostMapping("/pay/ready/{value}")
     public ResponseEntity<KakaoReadyResponse> pay(@PathVariable Integer value, HttpServletRequest request, @RequestBody HashMap<String, Object> map) {
         if (value == 0) throw new DonationOfProjectException(DonationOfProjectException.ZERO_PRICE);

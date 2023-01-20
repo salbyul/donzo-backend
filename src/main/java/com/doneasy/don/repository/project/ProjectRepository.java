@@ -18,7 +18,6 @@ public interface ProjectRepository {
     Boolean statusToDone(Long id);
     List<Project> findByOrganizationId(Long organization_id);
     ProjectShowDto findProjectInfoByProjectId(Long id);
-    // TODO 프로젝트 리뷰를 찾는 데 왜 프로젝트 레포지토리에?
     ProjectShowDto findProjectReviewInfoByProjectId(Long id);
 
 }
