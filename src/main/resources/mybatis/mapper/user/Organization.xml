@@ -7,7 +7,7 @@
 <mapper namespace="com.doneasy.don.repository.user.OrganizationRepository">
 
     <insert id="saveOrganization" parameterType="com.doneasy.don.domain.user.Organization">
-        insert into organization values((select get_seq('organization')), #{organization_id}, #{password}, #{email},
+        insert into organization values(organization_seq.nextval, #{organization_id}, #{password}, #{email},
                                         #{nickname}, #{phone_number}, #{image_name}, #{introduction}, #{zipcode},
                                         #{address}, #{account}, #{bank}, now(), now())
     </insert>

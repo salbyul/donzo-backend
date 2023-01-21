@@ -6,7 +6,7 @@
 <mapper namespace="com.doneasy.don.repository.project.ProjectReviewRepository">
     <insert id="saveReview" parameterType="com.doneasy.don.domain.project.ProjectReview">
         insert into projectreview
-        values ((select get_seq('projectreview')), #{title}, #{create_date}, #{organization_id}, #{project_id});
+        values (projectreview_seq.nextval, #{title}, #{create_date}, #{organization_id}, #{project_id});
     </insert>
 
     <select id="findReviewRecentByTitle" resultType="com.doneasy.don.domain.project.ProjectReview">
