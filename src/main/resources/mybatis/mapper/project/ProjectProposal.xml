@@ -6,7 +6,7 @@
 <mapper namespace="com.doneasy.don.repository.project.ProjectProposalRepository">
     <insert id="saveProject" parameterType="com.doneasy.don.domain.project.ProjectProposal">
         insert into projectproposal
-        values (projectproposal_seq.nextval, #{category}, #{deadline}, #{service_start_date}, #{service_end_date},
+        values ((select get_seq('projectproposal')), #{category}, #{deadline}, #{service_start_date}, #{service_end_date},
                 #{title}, #{target_price}, #{status}, now(), #{organization_id});
     </insert>
     <select id="findRecentByTitle" resultType="com.doneasy.don.domain.project.ProjectProposal">
