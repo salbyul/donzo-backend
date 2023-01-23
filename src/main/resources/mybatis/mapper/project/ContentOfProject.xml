@@ -6,7 +6,7 @@
 
     <insert id="saveContent" parameterType="com.doneasy.don.domain.project.ContentOfProject">
         insert into contentofproject
-        values (contentofproject_seq.nextval, #{subtitle}, #{content}, #{image_name}, #{order_num}, now(),
+        values ((select get_seq('contentofproject')), #{subtitle}, #{content}, #{image_name}, #{order_num}, now(),
                 #{project_id})
     </insert>
 

@@ -36,7 +36,7 @@
 
     <insert id="saveComment" parameterType="com.doneasy.don.domain.project.CommentOfProject">
         insert into commentofproject
-        values (commentofproject_seq.nextval, 'ACTIVE', #{content}, now(), #{member_id}, #{project_id});
+        values ((select get_seq('commentofproject')), 'ACTIVE', #{content}, now(), #{member_id}, #{project_id});
     </insert>
     <select id="findAll" resultType="com.doneasy.don.domain.project.CommentOfProject">
         select *

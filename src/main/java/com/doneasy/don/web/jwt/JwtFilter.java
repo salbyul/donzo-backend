@@ -41,7 +41,7 @@ public class JwtFilter implements Filter {
             log.info("header: {}", authorizationHeader);
             Claims claims = jwtTokenService.parseJwtTokenByHeader(authorizationHeader);
             Map<String, Object> payload = claims;
-            //        jwtTokenService.validationAuthorizationHeader(claims);
+            jwtTokenService.validationAuthorizationHeader(claims);
             if (payload.get("target") != null && payload.get("target").equals("member")) {
                 log.info("memberId setting");
                 request.setAttribute("memberId", payload.get("member"));

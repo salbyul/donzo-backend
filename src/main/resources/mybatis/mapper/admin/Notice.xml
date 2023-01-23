@@ -9,7 +9,7 @@
         select * from notice
     </select>
     <insert id="save" parameterType="com.doneasy.don.domain.admin.notice.Notice">
-        insert into notice values(notice_seq.nextval, #{title}, #{created_date}, #{modified_date})
+        insert into notice values((select get_seq('notice')), #{title}, #{created_date}, #{modified_date})
     </insert>
 
     <select id="findRecent" resultType="com.doneasy.don.domain.admin.notice.Notice">

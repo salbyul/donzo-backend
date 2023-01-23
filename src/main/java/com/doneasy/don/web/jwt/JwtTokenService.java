@@ -75,7 +75,7 @@ public class JwtTokenService {
     // 헤더 토큰 검증
     private void validationAuthorizationHeader(String header) {
         if (header == null || !header.startsWith("Bearer ")) {
-            throw new IllegalArgumentException("토큰 에러!!");
+            throw new JwtTokenException(JwtTokenException.INVALID_TOKEN);
         }
     }
 
